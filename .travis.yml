@@ -36,13 +36,13 @@ install: true
 before_install:
   - "export PHANTOMJS_VERSION=2.1.1"
   - "phantomjs --version"
-  - "if [ "$TRAVIS_ARCH" = "amd64" ]; then export PATH=$PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin:$PATH; fi"
+  - "if [ $TRAVIS_ARCH = amd64 ]; then export PATH=$PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin:$PATH; fi"
   - "phantomjs --version"
   - "if [ $(phantomjs --version) != '$PHANTOMJS_VERSION' ]; then rm -rf $PWD/travis_phantomjs; mkdir -p $PWD/travis_phantomjs; fi"
   - "if [ $(phantomjs --version) != '$PHANTOMJS_VERSION' ]; then wget https://github.com/Medium/phantomjs/releases/download/v$PHANTOMJS_VERSION/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -O $PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2; fi"
   - "if [ $(phantomjs --version) != '$PHANTOMJS_VERSION' ]; then tar -xvf $PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs; fi"
   - "phantomjs --version"
-  - "if [ "$TRAVIS_ARCH" = "s390x" ]; then sudo apt-get install -y phantomjs; fi"
+  - "if [ $TRAVIS_ARCH = s390x ]; then sudo apt-get install -y phantomjs; fi"
 
 before_script:
   - export -f travis_fold
