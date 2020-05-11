@@ -2,15 +2,13 @@ language: java
 
 arch:
   - amd64
-  env:
-    - PHANTOMJS_VERSION="2.1.1"
   - s390x
-  addons:
+    addons:
     apt_packages:
       - phantomjs
-  env:
-    - QT_QPA_PLATFORM="offscreen"
-
+    env:
+      - PHANTOMJS_VERSION="2.1.1"
+      - QT_QPA_PLATFORM="offscreen"
 cache:
   directories:
     - $HOME/.m2
