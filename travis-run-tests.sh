@@ -2,7 +2,7 @@
 
 function run-server-tests() {
     cd testsuite/integration-arquillian
-    mvn -s $TRAVIS_BUILD_DIR/maven-settings.xml install -B -nsu -Pauth-server-wildfly -DskipTests
+    mvn -s $TRAVIS_BUILD_DIR/maven-settings.xml install -B -nsu -DskipTests
 
     cd tests/base
     mvn -s $TRAVIS_BUILD_DIR/maven-settings.xml test -B -nsu -Pauth-server-wildfly "-Dtest=$1" $2 2>&1 | java -cp ../../../utils/target/classes org.keycloak.testsuite.LogTrimmer
