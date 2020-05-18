@@ -1,8 +1,7 @@
 language: java
 
 arch: 
-  - amd64   
-  - s390x
+   - s390x
   
 cache:
   directories:
