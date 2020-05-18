@@ -34,7 +34,7 @@ jdk:
 install: true
 
 before_install:
-  - "if [ $TRAVIS_ARCH = s390x ]; then sudo apt-get install phantomjs maven; export QT_QPA_PLATFORM=offscreen; fi"
+  - "if [ $TRAVIS_ARCH = s390x ]; then sudo apt-get install phantomjs; export QT_QPA_PLATFORM=offscreen; wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.5.4/apache-maven-3.5.4-bin.tar.gz; tar -xzf apache-maven-3.5.4-bin.tar.gz; export PATH=$PWD/apache-maven-3.5.4/bin:$PATH; fi"
   - "if [ $TRAVIS_ARCH = amd64 ]; then export PATH=$PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin:$PATH; fi"
   - "phantomjs --version"
   - "if [ $TRAVIS_ARCH = amd64 -a $(phantomjs --version) != '$PHANTOMJS_VERSION' ]; then rm -rf $PWD/travis_phantomjs; mkdir -p $PWD/travis_phantomjs; fi"
