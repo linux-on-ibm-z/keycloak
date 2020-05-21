@@ -58,7 +58,7 @@ fi
 
 travis_fold start compile_keycloak
 echo Compiling Keycloak
-( while : ; do echo "Compiling, please wait..." ; sleep 120 ; done ) &
+( while : ; do echo "Compiling, please wait..." ; sleep 50 ; done ) &
 COMPILING_PID=$!
 TMPFILE=`mktemp`
 if ! mvn -s $TRAVIS_BUILD_DIR/maven-settings.xml install -B -nsu -Pdistribution -DskipTests -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn &> "$TMPFILE"; then
