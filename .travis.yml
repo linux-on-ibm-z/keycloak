@@ -29,7 +29,7 @@ env:
     - TESTS=broker
 
 jdk:
-  - openjdk8
+  - adoptopenjdk8
 
 install: true
 
