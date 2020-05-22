@@ -15,7 +15,7 @@ env:
   global:
     - PHANTOMJS_VERSION=2.1.1
     - MAVEN_SKIP_RC=true
-    - MAVEN_OPTS="-Xms512m -Xmx1536m"
+    - MAVEN_OPTS="-Xms1024m -Xmx4096m"
   matrix:
     - TESTS=unit
     - TESTS=server-group1
@@ -29,7 +29,7 @@ env:
     - TESTS=broker
 
 jdk:
-  - openjdk11
+  - openjdk8
 
 install: true
 
