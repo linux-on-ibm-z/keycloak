@@ -14,7 +14,7 @@ module.controller('UserRoleMappingCtrl', function($scope, $http, $route, realm, 
     $scope.clientMappings = [];
     $scope.dummymodel = [];
     $scope.selectedClient = null;
-    
+
 
     $scope.realmMappings = RealmRoleMapping.query({realm : realm.realm, userId : user.id});
     $scope.realmRoles = AvailableRealmRoleMapping.query({realm : realm.realm, userId : user.id});
@@ -523,12 +523,10 @@ module.controller('UserDetailCtrl', function($scope, realm, user, BruteForceUser
 });
 
 module.controller('UserCredentialsCtrl', function($scope, realm, user, $route, $location, RequiredActions, User, UserExecuteActionsEmail,
-                                                  UserCredentials, Notifications, Dialog, TimeUnit2, Components, UserStorageOperations) {
+                                                  UserCredentials, Notifications, Dialog, TimeUnit2, Components, UserStorageOperations, $modal) {
     console.log('UserCredentialsCtrl');
 
     $scope.hasPassword = false;
-
-    $scope.showData = {};
 
     loadCredentials();
 
@@ -540,10 +538,6 @@ module.controller('UserCredentialsCtrl', function($scope, realm, user, $route, $
 
     $scope.getUserStorageProviderLink = function() {
         return user.federationLink ? $scope.federationLink : $scope.originLink;
-    }
-
-    $scope.keys = function(object) {
-        return object ? Object.keys(object) : [];
     }
 
     $scope.updateCredentialLabel = function(credential) {
@@ -630,6 +624,18 @@ module.controller('UserCredentialsCtrl', function($scope, realm, user, $route, $
             });
     }
 
+    $scope.showData = function(credentialData) {
+        $modal.open({
+            templateUrl: resourceUrl + '/partials/modal/user-credential-data.html',
+            controller: 'UserCredentialsDataModalCtrl',
+            resolve: {
+                credentialData: function () {
+                    return credentialData;
+                }
+            }
+        })
+    }
+
     $scope.realm = realm;
     $scope.user = angular.copy(user);
     $scope.temporaryPassword = true;
@@ -691,7 +697,7 @@ module.controller('UserCredentialsCtrl', function($scope, realm, user, $route, $
         var msgTitle = ($scope.hasPassword ? 'Reset' : 'Set') + ' password';
         var msg = 'Are you sure you want to ' + ($scope.hasPassword ? 'reset' : 'set') + ' a password for the user?';
         var msgSuccess = 'The password has been ' + ($scope.hasPassword ? 'reset.' : 'set.');
-        
+
         Dialog.confirm(msgTitle, msg, function() {
             UserCredentials.resetPassword({ realm: realm.realm, userId: user.id }, { type : "password", value : $scope.password, temporary: $scope.temporaryPassword }, function() {
                 Notifications.success(msgSuccess);
@@ -770,6 +776,14 @@ module.controller('UserCredentialsCtrl', function($scope, realm, user, $route, $
         $scope.pwdChange = false;
         $scope.userChange = false;
     };
+});
+
+module.controller('UserCredentialsDataModalCtrl', function($scope, credentialData) {
+    $scope.credentialData = credentialData;
+
+    $scope.keys = function(object) {
+        return object ? Object.keys(object) : [];
+    }
 });
 
 module.controller('UserFederationCtrl', function($scope, $location, $route, realm, serverInfo, Components, Notifications, Dialog) {
@@ -1350,7 +1364,8 @@ module.controller('UserGroupMembershipCtrl', function($scope, $q, realm, user, U
 });
 
 module.controller('LDAPUserStorageCtrl', function($scope, $location, Notifications, $route, Dialog, realm,
-                                                     serverInfo, instance, Components, UserStorageOperations, RealmLDAPConnectionTester) {
+                                                    serverInfo, instance, Components, UserStorageOperations,
+                                                    RealmLDAPConnectionTester, $http) {
     console.log('LDAPUserStorageCtrl');
     var providerId = 'ldap';
     console.log('providerId: ' + providerId);
@@ -1658,10 +1673,12 @@ module.controller('LDAPUserStorageCtrl', function($scope, $location, Notificatio
             Notifications.error("Error during unlink");
         });
     };
+
     var initConnectionTest = function(testAction, ldapConfig) {
         return {
             action: testAction,
             connectionUrl: ldapConfig.connectionUrl && ldapConfig.connectionUrl[0],
+            authType: ldapConfig.authType && ldapConfig.authType[0],
             bindDn: ldapConfig.bindDn && ldapConfig.bindDn[0],
             bindCredential: ldapConfig.bindCredential && ldapConfig.bindCredential[0],
             useTruststoreSpi: ldapConfig.useTruststoreSpi && ldapConfig.useTruststoreSpi[0],
@@ -1689,7 +1706,23 @@ module.controller('LDAPUserStorageCtrl', function($scope, $location, Notificatio
         });
     }
 
+    $scope.queryAndSetLdapSupportedExtensions = function() {
+        console.log('LDAPCtrl: getLdapSupportedExtensions');
+        const PASSWORD_MODIFY_OID = '1.3.6.1.4.1.4203.1.11.1';
 
+        $http.post(
+            `${authUrl}/admin/realms/${realm.realm}/ldap-server-capabilities`,
+            initConnectionTest("queryServerCapabilities", $scope.instance.config)).then(
+            (response) => {
+                Notifications.success("LDAP supported extensions successfully requested.");
+                const ldapOids = response.data;
+                if (angular.isArray(ldapOids)) {
+                    const passwordModifyOid = ldapOids.filter(ldapOid => ldapOid.oid === PASSWORD_MODIFY_OID);
+                    $scope.instance.config['usePasswordModifyExtendedOp'][0] = `${passwordModifyOid.length > 0}`;
+                }
+            },
+            () => Notifications.error("Error when trying to request supported extensions of LDAP. See server.log for details."));
+    }
 
 });
 
