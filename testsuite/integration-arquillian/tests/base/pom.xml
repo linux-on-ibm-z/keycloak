@@ -250,7 +250,7 @@
                 <version>2.3.4</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <goVersion>1.9.2</goVersion>
+                    <goVersion>1.10.1</goVersion>
                     <useMavenProxy>true</useMavenProxy>
                 </configuration>
                 <executions>
