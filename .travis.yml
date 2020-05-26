@@ -15,7 +15,7 @@ env:
   global:
     - PHANTOMJS_VERSION=2.1.1
     - MAVEN_SKIP_RC=true
-    - MAVEN_OPTS="-Xms2048m -Xmx4096m"
+    - MAVEN_OPTS="-Xms4096m -Xmx4096m"
   matrix:
     - TESTS=unit
     - TESTS=server-group1
