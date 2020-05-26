@@ -1,5 +1,8 @@
 language: java
 
+arch: 
+   - s390x
+
 cache:
   directories:
     - $HOME/.m2
