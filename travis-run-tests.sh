@@ -58,6 +58,10 @@ fi
 
 travis_fold start compile_keycloak
 echo Compiling Keycloak
+if [ $TRAVIS_ARCH} == "s390x" ]; then
+    export M2_HOME=/opt/maven
+    export PATH=${M2_HOME}/bin:${PATH}
+fi
 ( while : ; do echo "Compiling, please wait..." ; sleep 50 ; done ) &
 COMPILING_PID=$!
 TMPFILE=`mktemp`
