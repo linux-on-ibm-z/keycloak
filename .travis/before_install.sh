@@ -1,7 +1,7 @@
 #!/bin/sh
-set -ex
+set -ex;
 
-if [ $TRAVIS_ARCH == "s390x" ];
+if test ${TRAVIS_ARCH} = "s390x";
 then
   sudo apt-get install phantomjs;
   export QT_QPA_PLATFORM=offscreen;
