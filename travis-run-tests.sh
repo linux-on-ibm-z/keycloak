@@ -58,7 +58,8 @@ fi
 
 travis_fold start compile_keycloak
 echo Compiling Keycloak
-if [ $TRAVIS_ARCH} == "s390x" ]; then
+if [ $TRAVIS_ARCH == "s390x" ]; then
+    echo "OS is s390x. exporting env for mvn."
     export M2_HOME=/opt/maven
     export PATH=${M2_HOME}/bin:${PATH}
 fi
