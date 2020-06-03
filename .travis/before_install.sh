@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -ex;
 
 if test ${TRAVIS_ARCH} = "s390x";
