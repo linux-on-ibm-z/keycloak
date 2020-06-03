@@ -8,6 +8,7 @@ then
   wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.5.4/apache-maven-3.5.4-bin.tar.gz;
   tar -xzf apache-maven-3.5.4-bin.tar.gz;
   export PATH=$PWD/apache-maven-3.5.4/bin:$PATH;
+  cp -R $PWD/apache-maven-3.5.4/bin/* /usr/bin/
 else
   export PHANTOMJS_VERSION=2.1.1;
   phantomjs --version;
