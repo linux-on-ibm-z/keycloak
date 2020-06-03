@@ -64,6 +64,8 @@ if [ $TRAVIS_ARCH == "s390x" ]; then
     export PATH=${M2_HOME}/bin:${PATH}
     export MAVEN_SKIP_RC=true
     export MAVEN_OPTS="-Xms512m -Xmx1536m"
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
+    export PATH=$JAVA_HOME/bin:$PATH
     echo "Java version..."
     java -Xmx32m -version
     echo "mvn version..."

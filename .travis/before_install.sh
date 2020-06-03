@@ -3,11 +3,14 @@ set -ex;
 
 if test ${TRAVIS_ARCH} = "s390x";
 then
-  sudo apt-get install phantomjs;
-  export QT_QPA_PLATFORM=offscreen;
+  sudo apt-get install -y phantomjs
+  sudo apt-get install -y openjdk-8-jdk
+  export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
+  export PATH=$JAVA_HOME/bin:$PATH
+  export QT_QPA_PLATFORM=offscreen
   cd /opt/
-  wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.3/apache-maven-3.6.3-bin.tar.gz;
-  sudo tar -xzf apache-maven-3.6.3-bin.tar.gz;
+  wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.3/apache-maven-3.6.3-bin.tar.gz
+  sudo tar -xzf apache-maven-3.6.3-bin.tar.gz
   sudo mv apache-maven-3.6.3 maven
   sudo sh -c 'echo export M2_HOME=/opt/maven >> /etc/profile.d/mavenenv.sh'
   sudo sh -c 'echo export PATH=${M2_HOME}/bin:${PATH} >> /etc/profile.d/mavenenv.sh'
