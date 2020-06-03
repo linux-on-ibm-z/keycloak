@@ -3,6 +3,7 @@ set -ex;
 
 if test ${TRAVIS_ARCH} = "s390x";
 then
+  sudo apt-get update
   sudo apt-get install -y phantomjs
   sudo apt-get install -y openjdk-8-jdk
   export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
