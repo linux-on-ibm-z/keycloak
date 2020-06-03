@@ -12,6 +12,7 @@ then
   sudo sh -c 'echo export M2_HOME=/opt/maven >> /etc/profile.d/mavenenv.sh'
   sudo sh -c 'echo export PATH=${M2_HOME}/bin:${PATH} >> /etc/profile.d/mavenenv.sh'
   sudo chmod +x /etc/profile.d/mavenenv.sh
+  sudo source /etc/profile.d/mavenenv.sh
   cd -
   mvn --version
 else
