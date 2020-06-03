@@ -62,6 +62,12 @@ if [ $TRAVIS_ARCH == "s390x" ]; then
     echo "OS is s390x. exporting env for mvn."
     export M2_HOME=/opt/maven
     export PATH=${M2_HOME}/bin:${PATH}
+    export MAVEN_SKIP_RC=true
+    export MAVEN_OPTS="-Xms512m -Xmx1536m"
+    echo "Java version..."
+    java -Xmx32m -version
+    echo "mvn version..."
+    mvn --version
 fi
 ( while : ; do echo "Compiling, please wait..." ; sleep 50 ; done ) &
 COMPILING_PID=$!

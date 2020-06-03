@@ -6,9 +6,9 @@ then
   sudo apt-get install phantomjs;
   export QT_QPA_PLATFORM=offscreen;
   cd /opt/
-  wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.5.4/apache-maven-3.5.4-bin.tar.gz;
-  sudo tar -xzf apache-maven-3.5.4-bin.tar.gz;
-  sudo mv apache-maven-3.5.4 maven
+  wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.3/apache-maven-3.6.3-bin.tar.gz;
+  sudo tar -xzf apache-maven-3.6.3-bin.tar.gz;
+  sudo mv apache-maven-3.6.3 maven
   sudo sh -c 'echo export M2_HOME=/opt/maven >> /etc/profile.d/mavenenv.sh'
   sudo sh -c 'echo export PATH=${M2_HOME}/bin:${PATH} >> /etc/profile.d/mavenenv.sh'
   sudo chmod +x /etc/profile.d/mavenenv.sh
