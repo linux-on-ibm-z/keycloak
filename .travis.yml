@@ -27,9 +27,6 @@ env:
     - TESTS=crossdc-adapter
     - TESTS=broker
 
-jdk:
-  - openjdk8
-
 install: true
 
 before_install:
