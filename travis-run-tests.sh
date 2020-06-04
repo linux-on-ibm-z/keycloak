@@ -63,13 +63,11 @@ if [ $TRAVIS_ARCH == "s390x" ]; then
     export M2_HOME=/opt/maven
     export PATH=${M2_HOME}/bin:${PATH}
     export MAVEN_SKIP_RC=true
-    export MAVEN_OPTS="-Xms512m -Xmx1536m"
+    export MAVEN_OPTS="-Xms512m -Xmx1536m -Xss1024k"
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
     export PATH=$JAVA_HOME/bin:$PATH
     echo "Java version..."
     java -Xmx32m -version
-    echo "Fixing stackguard..."
-    sudo execstack -c /opt/maven/lib/jansi-native/linux64/libjansi.so
     echo "mvn version..."
     mvn --version
 fi
