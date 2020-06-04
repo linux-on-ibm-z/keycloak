@@ -14,7 +14,7 @@ before_cache:
 env:
   global:
     - MAVEN_SKIP_RC=true
-    - MAVEN_OPTS="-Xms512m -Xmx1536m"
+    - MAVEN_OPTS="-Xms1g -Xmx5g"
   matrix:
     - TESTS=unit
     - TESTS=server-group1
