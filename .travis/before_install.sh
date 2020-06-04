@@ -5,9 +5,9 @@ if test ${TRAVIS_ARCH} = "s390x";
 then
   sudo apt-get update
   sudo apt-get install -y phantomjs
-#  sudo apt-get install -y openjdk-8-jdk
-#  export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
-#  export PATH=$JAVA_HOME/bin:$PATH
+  sudo apt-get install -y openjdk-8-jdk
+  export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
+  export PATH=$JAVA_HOME/bin:$PATH
   export QT_QPA_PLATFORM=offscreen
   cd /opt/
   wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.3/apache-maven-3.6.3-bin.tar.gz

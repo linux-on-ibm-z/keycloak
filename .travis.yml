@@ -5,11 +5,11 @@ arch:
 
 cache:
   directories:
-    - $HOME/.m2
-    - $HOME/.npm
+    - /opt/maven/.m2
+    - /opt/maven/.npm
 
 before_cache:
-  - rm -rf $HOME/.m2/repository/org/keycloak
+  - rm -rf /opt/maven/.m2/repository/org/keycloak
 
 env:
   global:
@@ -26,9 +26,6 @@ env:
     - TESTS=crossdc-server
     - TESTS=crossdc-adapter
     - TESTS=broker
-
-jdk:
-  - openjdk11
 
 install: true
 
