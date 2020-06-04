@@ -14,7 +14,7 @@ before_cache:
 env:
   global:
     - MAVEN_SKIP_RC=true
-    - MAVEN_OPTS="-Xms512m -Xmx1536m -Xss1024k"
+    - MAVEN_OPTS="-Xms512m -Xmx1536m"
   matrix:
     - TESTS=unit
     - TESTS=server-group1
@@ -26,6 +26,9 @@ env:
     - TESTS=crossdc-server
     - TESTS=crossdc-adapter
     - TESTS=broker
+
+jdk:
+  - openjdk11
 
 install: true
 
