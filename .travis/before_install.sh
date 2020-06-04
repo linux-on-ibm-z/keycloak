@@ -6,6 +6,7 @@ then
   sudo apt-get update
   sudo apt-get install -y phantomjs
   sudo apt-get install -y openjdk-8-jdk
+  sudo apt-get install execstack -y --force-yes
   export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
   export PATH=$JAVA_HOME/bin:$PATH
   export QT_QPA_PLATFORM=offscreen

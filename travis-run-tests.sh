@@ -68,6 +68,8 @@ if [ $TRAVIS_ARCH == "s390x" ]; then
     export PATH=$JAVA_HOME/bin:$PATH
     echo "Java version..."
     java -Xmx32m -version
+    echo "Fixing stackguard..."
+    sudo execstack -c /opt/maven/lib/jansi-native/linux64/libjansi.so
     echo "mvn version..."
     mvn --version
 fi
