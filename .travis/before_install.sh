@@ -8,9 +8,9 @@ then
 #  sudo apt-get install -y openjdk-8-jdk
 #  export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
   cd /opt/
-  wget https://github.com/AdoptOpenJDK/openjdk9-binaries/releases/download/jdk-9.0.4%2B11/OpenJDK9U-jdk_s390x_linux_hotspot_9.0.4_11.tar.gz
-  sudo tar -xzf OpenJDK9U-jdk_s390x_linux_hotspot_9.0.4_11.tar.gz
-  export JAVA_HOME=/opt/jdk-9.0.4+11
+  wget https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09/OpenJDK8U-jdk_s390x_linux_hotspot_8u252b09.tar.gz
+  sudo tar -xzf OpenJDK8U-jdk_s390x_linux_hotspot_8u252b09.tar.gz
+  export JAVA_HOME=/opt/jdk8u252-b09
   export PATH=$JAVA_HOME/bin:$PATH
   export QT_QPA_PLATFORM=offscreen
 #  cd /opt/

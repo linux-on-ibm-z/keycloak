@@ -65,7 +65,7 @@ if [ $TRAVIS_ARCH == "s390x" ]; then
     export MAVEN_SKIP_RC=true
     export MAVEN_OPTS="-Xms512m -Xmx1536m -Xss1024k"
     #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
-    export JAVA_HOME=/opt/jdk-9.0.4+11
+    export JAVA_HOME=/opt/jdk8u252-b09
     export PATH=$JAVA_HOME/bin:$PATH
     echo "Java version..."
     java -Xmx32m -version
