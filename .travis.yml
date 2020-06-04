@@ -3,6 +3,9 @@ language: java
 arch: 
    - s390x
 
+dist:
+   - bionic
+
 cache:
   directories:
     - $HOME/.m2
@@ -14,7 +17,7 @@ before_cache:
 env:
   global:
     - MAVEN_SKIP_RC=true
-    - MAVEN_OPTS="-Xms1g -Xmx5g"
+    - MAVEN_OPTS="-Xms512m -Xmx1536m"
   matrix:
     - TESTS=unit
     - TESTS=server-group1
@@ -26,6 +29,9 @@ env:
     - TESTS=crossdc-server
     - TESTS=crossdc-adapter
     - TESTS=broker
+
+jdk:
+  - openjdk11
 
 install: true
 
