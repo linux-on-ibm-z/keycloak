@@ -43,7 +43,8 @@ before_script:
   - export -f travis_fold
 
 script:
-  - mvn --version 
+  - mvn --version
+  - export QT_QPA_PLATFORM=offscreen 
   - ./travis-run-tests.sh $TESTS
 
 after_success:
