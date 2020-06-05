@@ -4,7 +4,7 @@ arch:
    - s390x
 
 dist:
-  - bionic
+   - bionic
 
 cache:
   directories:
@@ -30,13 +30,12 @@ env:
     - TESTS=crossdc-adapter
     - TESTS=broker
 
-jdk:
-  - openjdk8
-
 install: true
 
 before_install:
-  - sudo apt-get install maven
+  - sudo apt-get install openjdk-8-jdk  maven
+  - export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
+  - export PATH=$JAVA_HOME/bin:$PATH
   - mvn --version
   - sudo env "PATH=$PATH" .travis/before_install.sh
 
