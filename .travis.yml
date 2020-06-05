@@ -42,7 +42,7 @@ before_script:
 
 script:
   - mvn --version 
-  - sudo env "PATH=$PATH" ./travis-run-tests.sh $TESTS
+  - ./travis-run-tests.sh $TESTS
 
 after_success:
   - .travis/docker-hub-master-trigger.sh
