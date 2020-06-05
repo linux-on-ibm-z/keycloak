@@ -33,6 +33,7 @@ jdk:
 install: true
 
 before_install:
+  - sudo apt-get install -y maven
   - mvn --version
   - sudo env "PATH=$PATH" .travis/before_install.sh
 
