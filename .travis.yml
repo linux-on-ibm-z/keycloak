@@ -33,7 +33,8 @@ jdk:
 install: true
 
 before_install:
-  - .travis/before_install.sh
+  - mvn --version
+  - sudo env "PATH=$PATH" .travis/before_install.sh
 
 before_script:
   - export -f travis_fold
