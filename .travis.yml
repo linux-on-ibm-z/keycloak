@@ -35,7 +35,7 @@ install: true
 before_install:
   - sudo apt-get install maven
   - curl -fsSL https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09_openj9-0.20.0/OpenJDK8U-jdk_s390x_linux_openj9_8u252b09_openj9-0.20.0.tar.gz | tar xz 
-  - sudo export PATH="$PWD/jdk8u252-b09/bin:$PATH"
+  - export PATH="$PWD/jdk8u252-b09/bin:$PATH"
   - mvn --version
   - sudo env "PATH=$PATH" .travis/before_install.sh
 
