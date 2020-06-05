@@ -38,7 +38,8 @@ before_install:
 before_script:
   - export -f travis_fold
 
-script: 
+script:
+  - mvn --version 
   - sudo env "PATH=$PATH" ./travis-run-tests.sh $TESTS
 
 after_success:
