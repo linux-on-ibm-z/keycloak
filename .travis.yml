@@ -3,9 +3,6 @@ language: java
 arch: 
    - s390x
 
-dist:
-   - bionic
-
 cache:
   directories:
     - $HOME/.m2
@@ -42,7 +39,7 @@ before_script:
   - export -f travis_fold
 
 script: 
-  - ./travis-run-tests.sh $TESTS
+  - sudo env "PATH=$PATH" ./travis-run-tests.sh $TESTS
 
 after_success:
   - .travis/docker-hub-master-trigger.sh

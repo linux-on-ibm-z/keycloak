@@ -62,8 +62,8 @@ if [ $TRAVIS_ARCH == "s390x" ]; then
     echo "OS is s390x. exporting env for mvn."
     #export M2_HOME=/opt/maven
     #export PATH=${M2_HOME}/bin:${PATH}
-    export MAVEN_SKIP_RC=true
-    export MAVEN_OPTS="-Xms512m -Xmx1536m"
+    #export MAVEN_SKIP_RC=true
+    #export MAVEN_OPTS="-Xms512m -Xmx1536m"
     #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
     #export JAVA_HOME=/opt/jdk8u242-b08
     #export PATH=$JAVA_HOME/bin:$PATH
